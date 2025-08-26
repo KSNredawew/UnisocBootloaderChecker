@@ -1,8 +1,9 @@
 package com.ksnredawew.unisocchecker
 
+import android.content.Context
 import android.os.Build
 
-class Checker {
+class Checker(private val context: Context) {
 
     data class CheckResult(
         val overallStatus: String,
@@ -12,8 +13,8 @@ class Checker {
     fun performAllChecks(): CheckResult {
         if (!Utils.isRootAvailable()) {
             return CheckResult(
-                getString(R.string.error_root),
-                getString(R.string.error_root_details)
+                context.getString(R.string.error_root),
+                context.getString(R.string.error_root_details)
             )
         }
 
@@ -22,14 +23,14 @@ class Checker {
         detailsBuilder.append("• SoC: ${socInfo.first ?: "Unknown"}\n")
         if (!isUnisocChip(socInfo.first)) {
             return CheckResult(
-                getString(R.string.error_unknown_soc),
+                context.getString(R.string.error_unknown_soc),
                 "SoC manufacturer: ${socInfo.first ?: "Unknown"}. This tool is designed for Unisoc/Spreadtrum devices."
             )
         }
 
         val securityPatch = Build.VERSION.SECURITY_PATCH
         detailsBuilder.append("• Security Patch: $securityPatch\n")
-        val isPatchOld = securityPatch.compareTo("2022-10-01") < 0
+        val isPatchOld = securityPatch.compareTo("2025-6-22") < 0
 
         val kernelVersion = getKernelVersion()
         detailsBuilder.append("• Kernel Version: $kernelVersion\n")

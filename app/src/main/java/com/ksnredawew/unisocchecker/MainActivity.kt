@@ -11,12 +11,15 @@ import kotlinx.coroutines.withContext
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val checker = Checker()
+    private lateinit var checker: Checker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        // Инициализируем Checker с контекстом
+        checker = Checker(this)
 
         binding.checkButton.setOnClickListener {
             runChecks()
