@@ -9,24 +9,24 @@ object Utils {
         return try {
             val fullCommand = if (requireRoot) "su -c $command" else command
             val process = Runtime.getRuntime().exec(fullCommand)
-            
+
             val outputReader = BufferedReader(InputStreamReader(process.inputStream))
             val errorReader = BufferedReader(InputStreamReader(process.errorStream))
-            
+
             val output = StringBuilder()
             val error = StringBuilder()
-            
+
             var line: String?
             while (outputReader.readLine().also { line = it } != null) {
                 output.appendLine(line)
             }
-            
+
             while (errorReader.readLine().also { line = it } != null) {
                 error.appendLine(line)
             }
-            
+
             process.waitFor()
-            
+
             CommandResult(
                 exitCode = process.exitValue(),
                 output = output.toString().trim(),
@@ -52,7 +52,8 @@ object Utils {
     }
 
     fun isRootAvailable(): Boolean {
-        return executeCommand("id").output.contains("uid=0")
+        val result = executeCommand("id")
+        return result.output.contains("uid=0")
     }
 
     data class CommandResult(
