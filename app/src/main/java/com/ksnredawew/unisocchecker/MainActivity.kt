@@ -31,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             binding.progressBar.visibility = android.view.View.VISIBLE
             binding.resultTextView.text = getString(R.string.checking)
+            binding.detailsTextView.text = ""
 
             val result = withContext(Dispatchers.IO) {
                 checker.performAllChecks()
