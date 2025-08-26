@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Unisoc Bootloader Checker</string>
+    <string name="check_device">Check Device</string>
+    <string name="result_placeholder">Press \"Check Device\" to analyze.</string>
+    <string name="details_placeholder">Details will appear here after check.</string>
+    <string name="show_warnings">Show Warnings</string>
+    <string name="warning_message">WARNING: This app is for educational purposes only. Unlocking bootloader may void warranty and break your device. Do not update via OTA if you plan to unlock! Manufacturer may have patched the vulnerability and enabled anti-rollback.</string>
+    <string name="error_root">Root access required</string>
+    <string name="error_root_details">This application requires root privileges to perform deep system checks. Please grant root access or use a rooted device.</string>
+    <string name="error_unknown_soc">Unable to determine SoC. This might not be a Unisoc device.</string>
+    <string name="checking">Checking…</string>
+    <string name="warning_title">Important Warning</string>
+    <string name="understand">Understand</string>
+</resources>
